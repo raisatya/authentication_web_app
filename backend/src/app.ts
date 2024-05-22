@@ -1,8 +1,9 @@
-import express from 'express';
+import express, { Request, Response } from 'express';
 import 'express-async-errors';
 
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
+//import path from 'path';
 
 import { signupRouter } from './routes/signup';
 import { getAllUsersRouter } from './routes/get-users';
@@ -18,9 +19,20 @@ const app = express();
 app.use(express.json());
 app.use(cookieParser());
 
+const prodOrigins = [process.env.ORIGIN_1, process.env.ORIGIN_2]
+const devOrigin = ['http://localhost:5173']
+const allowedOrigins = process.env.NODE_ENV === 'production' ? prodOrigins : devOrigin
 app.use(cors({
+    origin: (origin, callback) => {
+      if(allowedOrigins.includes(origin)) {
+        console.log(origin, allowedOrigins)
+        callback(null, true)
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
     credentials: true,
-    origin: "http://localhost:5173"
+    methods: ['GET', 'POST', 'PUT', 'DELETE']
 }));
 
 app.use(signupRouter);
@@ -30,7 +42,8 @@ app.use(currentUserRouter);
 app.use(getAllUsersRouter);
 app.use(existingUserRouter);
 
-app.all("*", async (req, res) => {
+
+app.all("*", async (req: Request, res: Response) => {
   throw new NotFoundError();
 });
 

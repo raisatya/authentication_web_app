@@ -9,26 +9,39 @@ interface UserInterface {
     fullname: string;
 }
 
-const userSchema = new Schema<UserInterface>({
+const userSchema = new Schema<UserInterface>(
+  {
     email: {
-        type: String,
-        required: true,
-        unique: true
+      type: String,
+      required: true,
+      unique: true,
     },
     username: {
-        type: String,
-        required: true,
-        unique: true
+      type: String,
+      required: true,
+      unique: true,
     },
     password: {
-        type: String,
-        required: true
+      type: String,
+      required: true,
     },
     fullname: {
-        type: String,
-        required: true
-    }
-});
+      type: String,
+      required: true,
+    },
+  },
+  {
+    timestamps: true,
+    toJSON: {
+      transform(doc, ret) {
+        ret.id = ret._id;
+        delete ret._id;
+        delete ret.password;
+        delete ret.__v;
+      },
+    },
+  }
+);
 
 userSchema.pre("save", async function (done) {
   if (this.isModified("password")) {

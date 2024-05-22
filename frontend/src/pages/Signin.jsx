@@ -23,7 +23,7 @@ const Signin = () => {
   }, [setInputs]);
 
   const { doRequest } = useRequest({
-    url: 'http://localhost:5000/api/users/signin',
+    url: `${import.meta.env.VITE_BASE_URL}/api/users/signin`,
     method: 'post',
     body: {
       email: inputs.email,

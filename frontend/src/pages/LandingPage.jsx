@@ -6,21 +6,20 @@ import LandingPageWrapper from '../components/LandingPageWrapper';
 import LogoutComponent from '../components/LogoutComponent';
 
 const LandingPage = () => {
-
   const [currentUser, setCurrentUser] = useState(null);
-
   useEffect(() => {
     const verifyCurrentUser = async () => {
-      const { data } = await axios.get("http://localhost:5000/api/users/currentuser", {
+      const { data } = await axios.get(`${import.meta.env.VITE_BASE_URL}/api/users/currentuser`, {
         withCredentials: true
       });
 
-      if(data)
+      if(data.currentUser !== currentUser)
         setCurrentUser(data.currentUser);
     }
 
   verifyCurrentUser();
-  }, [currentUser])
+  }, [])
+  console.log(currentUser);
   
   return (
     <LandingPageWrapper>
@@ -33,10 +32,10 @@ const LandingPage = () => {
             Authentication</h1>
           </div>
           <WeekDay />
-          <LogoutComponent/>
+          <LogoutComponent currentUser={currentUser}/>
           <p className=''>
-            <a href='https://github.com/raisatya' className="">
-              https://github.com/raisatya
+          <a href='https://github.com/raisatya/authentication_web_app' className="">
+            https://github.com/raisatya/authentication_web_app
             </a>
           </p>
           <p className='font-medium mt-2'>Contact Email: satyanlpid1@gmail.com</p>

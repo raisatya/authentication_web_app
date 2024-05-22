@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { memo } from 'react';
 import dayjs from 'dayjs'
 
 const WeekDay = () => {
@@ -34,10 +34,9 @@ const WeekDay = () => {
     const currentdate = dayjs().get('date');
 
     const dateDisplayString = `${dayname}, ${currentdate} ${currentmonth}, ${currentyear}`
-
   return (
       <p className='text-xl sm:text-3xl font-semibold tracking-widest'>{dateDisplayString}</p>
   )
 }
 
-export default WeekDay
+export default memo(WeekDay);

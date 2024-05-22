@@ -1,7 +1,6 @@
-import {useState, useEffect} from 'react'
+import {memo, useState, useEffect} from 'react'
 import dayjs from 'dayjs';
 import '../App.css';
-
 
 const LandingPageWrapper = ({children}) => {
 
@@ -35,4 +34,4 @@ const LandingPageWrapper = ({children}) => {
   )
 }
 
-export default LandingPageWrapper
+export default memo(LandingPageWrapper)

@@ -1,42 +1,19 @@
 .sunrisebg {
-    background-image: url('./assets/sunrise.jpg');
+    background-image: url('/sunrise.jpg');
 }
 
 .noonbg {
-    background-image: url('./assets/noon.jpg');
+    background-image: url('/noon.jpg');
 }
 
 .sunsetbg {
-    background-image: url('./assets/sunset.jpg');
+    background-image: url('/sunset.jpg');
 }
 
 .nightbg {
-    background-image: url('./assets/night.jpg');
+    background-image: url('/night.jpg');
 }
 
 .midnightbg {
-    background-image: url('./assets/midnight.jpg');
-}
-
-.tooltip {
-    position: relative;
-}
-
-.tooltip .tooltiptext {
-    visibility: hidden;
-    background-color: black;
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 5px 10px;
-    /* Position the tooltip */
-    position: absolute;
-    z-index: 1;
-    bottom: 100%;
-    left: 50%;
-    margin-left: -60px;
-}
-
-.tooltip:hover .tooltiptext {
-    visibility: visible;
+    background-image: url('/midnight.jpg');
 }

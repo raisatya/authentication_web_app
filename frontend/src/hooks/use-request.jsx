@@ -1,7 +1,5 @@
 import axios from 'axios';
 
-import { useState } from 'react';
-
 export default ({ url, method, body, onSuccess, setErrors }) => {
 
     const doRequest = async (props = {}) => {

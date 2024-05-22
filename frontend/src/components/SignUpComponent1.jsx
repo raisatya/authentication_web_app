@@ -21,7 +21,7 @@ const SignUpComponent1 = ({ setValidSignup, setPrecheckedData }) => {
     }, [setInputs]);
 
     const { doRequest } = useRequest({
-        url: 'http://localhost:5000/api/users/existinguser',
+        url: `${import.meta.env.VITE_BASE_URL}/api/users/existinguser`,
         method: 'post',
         body: {
             email: inputs.email,
