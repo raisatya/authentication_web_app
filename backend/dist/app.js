@@ -34,16 +34,11 @@ const prodOrigins = [process.env.ORIGIN_1, process.env.ORIGIN_2];
 const devOrigin = ['http://localhost:5173'];
 const allowedOrigins = process.env.NODE_ENV == 'production' ? prodOrigins : devOrigin;
 app.use((0, cors_1.default)({
-    origin: (origin, callback) => {
-        if (allowedOrigins.includes(origin)) {
-            callback(null, true);
-        }
-        else {
-            callback(new Error(`${origin} not allowed by cors`));
-        }
-    },
-    credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'DELETE']
+    origin: "*",
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    preflightContinue: false,
+    optionsSuccessStatus: 204,
+    credentials: true
 }));
 app.use(signup_1.signupRouter);
 app.use(signin_1.signinRouter);
