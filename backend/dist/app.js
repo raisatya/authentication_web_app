@@ -30,11 +30,9 @@ const app = (0, express_1.default)();
 exports.app = app;
 app.use(express_1.default.json());
 app.use((0, cookie_parser_1.default)());
-const prodOrigins = [process.env.ORIGIN_1, process.env.ORIGIN_2];
-const devOrigin = ['http://localhost:5173'];
-const allowedOrigins = process.env.NODE_ENV == 'production' ? prodOrigins : devOrigin;
+const CLIENT_URL = process.env.ORIGIN_1 || "http://localhost:5173";
 app.use((0, cors_1.default)({
-    origin: "*",
+    origin: CLIENT_URL,
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     preflightContinue: false,
     optionsSuccessStatus: 204,
@@ -50,3 +48,24 @@ app.all("*", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     throw new not_found_error_1.NotFoundError();
 }));
 app.use(error_handler_1.errorHandler);
+/*
+
+const prodOrigins = [process.env.ORIGIN_1, process.env.ORIGIN_2]
+const devOrigin = ['http://localhost:5173']
+const allowedOrigins = process.env.NODE_ENV == 'production' ? prodOrigins : devOrigin
+
+origin: (origin, callback) => {
+      if (getEnvironmentVariable('NODE_ENV') === 'production') {
+        if (!origin || allowedOrigins.includes(origin)) {
+          callback(null, true);
+        } else {
+          callback(new Error(`${origin} not allowed by cors`));
+        }
+      } else {
+        callback(null, true);
+      }
+    },
+    optionsSuccessStatus: 200,
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+*/ 
