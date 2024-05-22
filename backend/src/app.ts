@@ -6,7 +6,7 @@ import cors from 'cors';
 //import path from 'path';
 
 import { signupRouter } from './routes/signup';
-import { getAllUsersRouter } from './routes/get-users';
+//import { getAllUsersRouter } from './routes/get-users';
 import { signinRouter } from './routes/signin';
 import { signoutRouter } from './routes/signout';
 import { currentUserRouter } from './routes/current-user';
@@ -27,7 +27,7 @@ app.use(cors({
       if(allowedOrigins.includes(origin)) {
         callback(null, true)
       } else {
-        callback(new Error('Not allowed by CORS'));
+        callback(new Error(`${origin} not allowed by cors`));
       }
     },
     credentials: true,
@@ -38,7 +38,7 @@ app.use(signupRouter);
 app.use(signinRouter);
 app.use(signoutRouter);
 app.use(currentUserRouter);
-app.use(getAllUsersRouter);
+//app.use(getAllUsersRouter);
 app.use(existingUserRouter);
 
 

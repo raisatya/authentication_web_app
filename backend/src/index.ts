@@ -4,6 +4,8 @@ import { app } from './app';
 
 dotenv.config();
 
+const PORT: string | number = process.env.PORT || 3000;
+
 const start = async () => {
     try {
         if(!process.env.MONGO_URI) {
@@ -16,9 +18,11 @@ const start = async () => {
         console.log(err);
     }
 
-    app.listen(5000, () => {
-        console.log("Running on port 5000")
-    })
+    app.listen(PORT, () =>
+      {console.log(
+        `[server]: running on port: ${PORT} | http://localhost:${PORT}/`
+      )}
+    );
 }
 
 start();
