@@ -5,10 +5,11 @@ import { useNavigate } from 'react-router-dom';
 const Signout = () => {
 
     const navigate = useNavigate();
+    const BASE_URL = import.meta.env.VITE_ENV == 'production' ? import.meta.env.VITE_PRODUCTION_BASE_URL : import.meta.env.VITE_DEVELOPMENT_BASE_URL;
 
     useEffect(() => {
         const verifyCurrentUser = async () => {
-            await axios.get(`${import.meta.env.VITE_BASE_URL}/api/users/signout`, {
+            await axios.get(`${BASE_URL}/api/users/signout`, {
                 withCredentials: true
             });
             navigate("/");

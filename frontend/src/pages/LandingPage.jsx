@@ -7,19 +7,20 @@ import LogoutComponent from '../components/LogoutComponent';
 
 const LandingPage = () => {
   const [currentUser, setCurrentUser] = useState(null);
+
+  const BASE_URL = import.meta.env.VITE_ENV == 'production' ? import.meta.env.VITE_PRODUCTION_BASE_URL : import.meta.env.VITE_DEVELOPMENT_BASE_URL;
   useEffect(() => {
     const verifyCurrentUser = async () => {
-      const { data } = await axios.get(`${import.meta.env.VITE_BASE_URL}/api/users/currentuser`, {
+      const { data } = await axios.get(`${BASE_URL}/api/users/currentuser`, {
         withCredentials: true
       });
 
-      if(data.currentUser !== currentUser)
+      if(data)
         setCurrentUser(data.currentUser);
     }
 
   verifyCurrentUser();
   }, [])
-  console.log(currentUser);
   
   return (
     <LandingPageWrapper>
