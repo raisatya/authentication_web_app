@@ -1,10 +1,6 @@
 import axios from 'axios';
 
-export default ({ urlroute, method, body, onSuccess, setErrors }) => {
-
-    const API_URL = import.meta.env.VITE_API_URL;
-
-    const url = `${API_URL} + ${urlroute}`
+export default ({ url, method, body, onSuccess, setErrors }) => {
 
     const doRequest = async (props = {}) => {
         try {

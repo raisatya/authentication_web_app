@@ -16,6 +16,8 @@ const Signin = () => {
     password: ""
   });
 
+  const API_URL = import.meta.env.VITE_API_URL;
+
   const handleChange = useCallback((event) => {
     const name = event.target.name;
     const value = event.target.value;
@@ -23,7 +25,7 @@ const Signin = () => {
   }, [setInputs]);
 
   const { doRequest } = useRequest({
-    url: `/api/users/signin`,
+    url: `${API_URL}/api/users/signin`,
     method: 'post',
     body: {
       email: inputs.email,
