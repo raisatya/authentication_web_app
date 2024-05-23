@@ -45,11 +45,6 @@ router.post(
       process.env.JWT_SECRET!
     );
 
-    req.session = {
-      jwt: userJwt,
-    };
-
-    /*
     res.cookie(
       "currentUser",
       { jwt: userJwt },
@@ -60,8 +55,7 @@ router.post(
         sameSite: 'none'
       }
     );
-    */
-    //_vercel_jwt
+
     res.status(201).send(existingUser);
   }
 );

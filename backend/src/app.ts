@@ -17,15 +17,8 @@ import { existingUserRouter } from './routes/existing-user';
 
 const app = express();
 
-app.set("trust proxy", true);
 app.use(express.json());
 app.use(cookieParser());
-app.use(
-  cookieSession({
-    signed: false,
-    secure: process.env.NODE_ENV !== 'development',
-  })
-);
 
 const CLIENT_URL = process.env.ORIGIN_1 || process.env.ORIGIN_2 || "http://localhost:5173";
 
