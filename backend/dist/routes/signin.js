@@ -68,7 +68,7 @@ router.post("/api/users/signin", [
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
         maxAge: 24 * 60 * 60 * 1000,
-        sameSite: 'lax'
+        sameSite: 'none'
     });
     //_vercel_jwt
     res.status(201).send(existingUser);
