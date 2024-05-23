@@ -17,6 +17,7 @@ import { existingUserRouter } from './routes/existing-user';
 
 const app = express();
 
+app.set("trust proxy", true);
 app.use(express.json());
 app.use(cookieParser());
 app.use(
