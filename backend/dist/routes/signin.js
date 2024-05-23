@@ -66,7 +66,13 @@ router.post("/api/users/signin", [
     }, process.env.JWT_SECRET);
     res.cookie("currentUser", { jwt: userJwt }, {
         httpOnly: true,
-        secure: process.env.NODE_ENV === "production"
+        secure: process.env.NODE_ENV === "production",
+        maxAge: 24 * 60 * 60 * 1000,
+        domain: process.env.NODE_ENV === "production"
+            ? process.env.ORIGIN_1
+            : "localhost",
+        path: "/",
+        sameSite: 'lax'
     });
     //_vercel_jwt
     res.status(201).send(existingUser);
