@@ -59,7 +59,10 @@ router.post(
       process.env.JWT_SECRET!
     );
 
-    res.cookie("currentUser", { jwt: userJwt });
+    res.cookie("currentUser", { jwt: userJwt }, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production"
+    });
 
     res.status(201).send(newUser);
   }

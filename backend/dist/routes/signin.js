@@ -64,6 +64,10 @@ router.post("/api/users/signin", [
         username: existingUser.username,
         fullname: existingUser.fullname,
     }, process.env.JWT_SECRET);
-    res.cookie("currentUser", { jwt: userJwt });
+    res.cookie("currentUser", { jwt: userJwt }, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production"
+    });
+    //_vercel_jwt
     res.status(201).send(existingUser);
 }));
