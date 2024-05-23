@@ -6,7 +6,6 @@ import LandingPageWrapper from "../components/LandingPageWrapper";
 const Signup = () => {
 
     const [validSignup, setValidSignup] = useState(false);
-    const BASE_URL = import.meta.env.VITE_ENV == 'production' ? import.meta.env.VITE_PRODUCTION_BASE_URL : import.meta.env.VITE_DEVELOPMENT_BASE_URL;
 
     const [precheckedData, setPrecheckedData] = useState({
         email: "",
@@ -35,7 +34,7 @@ const Signup = () => {
                     </div>
                 </div>
                 <div className='col-span-1 p-6'>
-                    {validSignup ? <SignUpComponent2 BASE_URL={BASE_URL} precheckedData={precheckedData} /> : <SignUpComponent1 BASE_URL={BASE_URL} setValidSignup={setValidSignup} setPrecheckedData={setPrecheckedData}/>}
+                    {validSignup ? <SignUpComponent2 precheckedData={precheckedData} /> : <SignUpComponent1 setValidSignup={setValidSignup} setPrecheckedData={setPrecheckedData}/>}
                 </div>
             </div>
         </LandingPageWrapper>

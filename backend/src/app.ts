@@ -19,13 +19,12 @@ const app = express();
 app.use(express.json());
 app.use(cookieParser());
 
-const CLIENT_URL = process.env.ORIGIN_1 || "http://localhost:5173";
+const CLIENT_URL = process.env.ORIGIN_1 || process.env.ORIGIN_2 || "http://localhost:5173";
 
 app.use(
   cors({
     origin: CLIENT_URL,
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-    preflightContinue: false,
     optionsSuccessStatus: 204,
     credentials: true
   })

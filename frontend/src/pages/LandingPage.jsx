@@ -11,7 +11,9 @@ const LandingPage = () => {
   const API_URL = import.meta.env.VITE_API_URL;
   useEffect(() => {
     const verifyCurrentUser = async () => {
-      const { data } = await axios.get(`${API_URL}/api/users/currentuser`);
+      const { data } = await axios.get(`${API_URL}/api/users/currentuser`, {
+        withCredentials: true,
+      });
 
       if(data)
         setCurrentUser(data.currentUser);

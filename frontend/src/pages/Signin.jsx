@@ -22,10 +22,8 @@ const Signin = () => {
     setInputs(values => ({ ...values, [name]: value }));
   }, [setInputs]);
 
-  const BASE_URL = import.meta.env.VITE_ENV == 'production' ? import.meta.env.VITE_PRODUCTION_BASE_URL : import.meta.env.VITE_DEVELOPMENT_BASE_URL;
-
   const { doRequest } = useRequest({
-    url: `${BASE_URL}/api/users/signin`,
+    url: `/api/users/signin`,
     method: 'post',
     body: {
       email: inputs.email,

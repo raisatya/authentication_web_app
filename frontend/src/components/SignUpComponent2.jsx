@@ -2,7 +2,7 @@ import { useState, useCallback, useRef } from "react";
 import { useNavigate } from 'react-router-dom';
 import useRequest from '../hooks/use-request';
 
-const SignUpComponent2 = ({ BASE_URL, precheckedData }) => {
+const SignUpComponent2 = ({ precheckedData }) => {
 
     const navigate = useNavigate();
 
@@ -22,7 +22,7 @@ const SignUpComponent2 = ({ BASE_URL, precheckedData }) => {
     }, [setInputs]);
 
     const { doRequest } = useRequest({
-        url: `${BASE_URL}/api/users/signup`,
+        url: `/api/users/signup`,
         method: 'post',
         body: {
             email: precheckedData.email,
