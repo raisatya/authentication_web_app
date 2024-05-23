@@ -2,6 +2,7 @@ import express, { Request, Response } from 'express';
 import 'express-async-errors';
 
 import cookieParser from 'cookie-parser';
+import cookieSession from 'cookie-session';
 import cors from 'cors';
 //import path from 'path';
 
@@ -18,6 +19,12 @@ const app = express();
 
 app.use(express.json());
 app.use(cookieParser());
+app.use(
+  cookieSession({
+    signed: false,
+    secure: process.env.NODE_ENV !== 'development',
+  })
+);
 
 const CLIENT_URL = process.env.ORIGIN_1 || process.env.ORIGIN_2 || "http://localhost:5173";
 

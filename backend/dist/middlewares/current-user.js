@@ -26,11 +26,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.currentUser = void 0;
 const jwt = __importStar(require("jsonwebtoken"));
 const currentUser = (req, _res, next) => {
-    if (!req.cookies.currentUser) {
+    var _a;
+    if (!((_a = req.session) === null || _a === void 0 ? void 0 : _a.jwt)) {
         return next();
     }
     try {
-        const payload = jwt.verify(req.cookies.currentUser.jwt, process.env.JWT_SECRET);
+        const payload = jwt.verify(req.session.jwt, process.env.JWT_SECRET);
         req.currentUser = payload;
     }
     catch (err) { }
