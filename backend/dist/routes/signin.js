@@ -64,21 +64,11 @@ router.post("/api/users/signin", [
         username: existingUser.username,
         fullname: existingUser.fullname,
     }, process.env.JWT_SECRET);
-    req.session = {
-        jwt: userJwt,
-    };
-    /*
-    res.cookie(
-      "currentUser",
-      { jwt: userJwt },
-      {
+    res.cookie("currentUser", { jwt: userJwt }, {
         httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
+        secure: false,
         maxAge: 24 * 60 * 60 * 1000,
         sameSite: 'none'
-      }
-    );
-    */
-    //_vercel_jwt
+    });
     res.status(201).send(existingUser);
 }));

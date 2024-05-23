@@ -16,7 +16,6 @@ exports.app = void 0;
 const express_1 = __importDefault(require("express"));
 require("express-async-errors");
 const cookie_parser_1 = __importDefault(require("cookie-parser"));
-const cookie_session_1 = __importDefault(require("cookie-session"));
 const cors_1 = __importDefault(require("cors"));
 //import path from 'path';
 const signup_1 = require("./routes/signup");
@@ -29,13 +28,8 @@ const not_found_error_1 = require("./errors/not-found-error");
 const existing_user_1 = require("./routes/existing-user");
 const app = (0, express_1.default)();
 exports.app = app;
-app.set("trust proxy", true);
 app.use(express_1.default.json());
 app.use((0, cookie_parser_1.default)());
-app.use((0, cookie_session_1.default)({
-    signed: false,
-    secure: process.env.NODE_ENV !== 'development',
-}));
 const CLIENT_URL = process.env.ORIGIN_1 || process.env.ORIGIN_2 || "http://localhost:5173";
 app.use((0, cors_1.default)({
     origin: CLIENT_URL,
