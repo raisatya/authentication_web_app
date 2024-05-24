@@ -32,7 +32,7 @@ const SignUpComponent2 = ({ API_URL, precheckedData }) => {
         },
         onSuccess: () => {
             setIsLoading(false);
-            window.location.href = '/signin';
+            window.location.href = '/';
         },
         setErrors
     });
