@@ -9,6 +9,10 @@ export default ({ url, method, body, onSuccess, setErrors }) => {
                 ...body,
                 ...props,
             }, {
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                },
                 withCredentials: true,
             });
 
