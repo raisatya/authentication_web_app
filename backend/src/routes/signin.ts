@@ -50,14 +50,14 @@ router.post(
     console.log(nodeenvboolean);
     const nodeenvboolean2 = process.env.NODE_ENV == 'production';
     console.log("Second " + nodeenvboolean2);
-    
+
     res.cookie(
       "currentUser",
       { jwt: userJwt },
       {
         httpOnly: true,
-        sameSite: "strict",
-        secure: process.env.NODE_DEV === "production" ? true : false,
+        sameSite: "none",
+        secure: true,
         maxAge: 24 * 60 * 60 * 1000,
         domain: process.env.ORIGIN_1,
         path: "/",
