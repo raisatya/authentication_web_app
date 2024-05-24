@@ -66,9 +66,13 @@ router.post("/api/users/signin", [
     }, process.env.JWT_SECRET);
     res.cookie("currentUser", { jwt: userJwt }, {
         httpOnly: true,
-        secure: false,
+        sameSite: "strict",
+        secure: process.env.NODE_DEV === "production" ? true : false,
         maxAge: 24 * 60 * 60 * 1000,
-        sameSite: 'none'
+        domain: process.env.NODE_DEV === "production"
+            ? process.env.ORIGIN_1
+            : "localhost:5173",
+        path: "/",
     });
     res.status(201).send(existingUser);
 }));
