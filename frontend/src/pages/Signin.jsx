@@ -1,12 +1,11 @@
 import { useState, useCallback, useRef } from "react";
-import { useNavigate, useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import useRequest from '../hooks/use-request';
 import LandingPageWrapper from "../components/LandingPageWrapper";
 
 const Signin = () => {
 
   const navigate = useNavigate();
-  const history = useHistory();
 
   const inputRef = useRef(null);
   const [errors, setErrors] = useState(null);
@@ -34,7 +33,7 @@ const Signin = () => {
     },
     onSuccess: () => {
       setIsLoading(false);
-      history.replace("/");
+      window.location.href = '/signin';
     },
     setErrors
   });
