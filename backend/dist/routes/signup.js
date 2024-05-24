@@ -86,7 +86,7 @@ router.post("/api/users/signup", [
     }, process.env.JWT_SECRET);
     res.cookie("currentUser", { jwt: userJwt }, {
         httpOnly: true,
-        secure: false,
+        secure: process.env.NODE_ENV === "production",
         maxAge: 24 * 60 * 60 * 1000,
         sameSite: "none",
     });

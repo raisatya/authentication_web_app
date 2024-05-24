@@ -69,6 +69,8 @@ router.post("/api/users/signin", [
         sameSite: "none",
         secure: process.env.NODE_ENV === "production",
         maxAge: 24 * 60 * 60 * 1000,
+        domain: "authentication-web-app-nv5b.onrender.com",
+        path: "/",
     });
     res.status(201).send(existingUser);
 }));
