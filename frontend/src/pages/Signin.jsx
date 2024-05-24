@@ -33,7 +33,6 @@ const Signin = () => {
     },
     onSuccess: () => {
       setIsLoading(false);
-      navigate('/')
     },
     setErrors
   });
@@ -53,6 +52,7 @@ const Signin = () => {
     setIsLoading(true);
     await doRequest();
     setIsLoading(false);
+    if (errors === null) navigate('/');
   }
 
   return (

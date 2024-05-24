@@ -32,7 +32,6 @@ const SignUpComponent2 = ({ API_URL, precheckedData }) => {
         },
         onSuccess: () => {
             setIsLoading(false);
-            navigate('/')
         },
         setErrors
     });
@@ -52,6 +51,7 @@ const SignUpComponent2 = ({ API_URL, precheckedData }) => {
         setIsLoading(true);
         await doRequest();
         setIsLoading(false);
+        if(errors === null) navigate('/');
     }
 
     return (
