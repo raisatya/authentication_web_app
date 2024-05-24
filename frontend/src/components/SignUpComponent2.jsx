@@ -1,10 +1,11 @@
 import { useState, useCallback, useRef } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useHistory } from 'react-router-dom';
 import useRequest from '../hooks/use-request';
 
 const SignUpComponent2 = ({ API_URL, precheckedData }) => {
 
     const navigate = useNavigate();
+    const history = useHistory();
 
     const inputRef = useRef(null);
     const [errors, setErrors] = useState(null);
@@ -32,6 +33,7 @@ const SignUpComponent2 = ({ API_URL, precheckedData }) => {
         },
         onSuccess: () => {
             setIsLoading(false);
+            history.replace("/");
         },
         setErrors
     });
@@ -51,7 +53,6 @@ const SignUpComponent2 = ({ API_URL, precheckedData }) => {
         setIsLoading(true);
         await doRequest();
         setIsLoading(false);
-        if(errors === null) navigate('/');
     }
 
     return (

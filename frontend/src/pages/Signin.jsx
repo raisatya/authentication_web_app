@@ -1,11 +1,12 @@
 import { useState, useCallback, useRef } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useHistory } from 'react-router-dom';
 import useRequest from '../hooks/use-request';
 import LandingPageWrapper from "../components/LandingPageWrapper";
 
 const Signin = () => {
 
   const navigate = useNavigate();
+  const history = useHistory();
 
   const inputRef = useRef(null);
   const [errors, setErrors] = useState(null);
@@ -33,6 +34,7 @@ const Signin = () => {
     },
     onSuccess: () => {
       setIsLoading(false);
+      history.replace("/");
     },
     setErrors
   });
@@ -52,7 +54,6 @@ const Signin = () => {
     setIsLoading(true);
     await doRequest();
     setIsLoading(false);
-    if (errors === null) navigate('/');
   }
 
   return (
