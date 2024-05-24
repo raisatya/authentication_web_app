@@ -64,18 +64,11 @@ router.post("/api/users/signin", [
         username: existingUser.username,
         fullname: existingUser.fullname,
     }, process.env.JWT_SECRET);
-    console.log("Checking production environment: " + process.env.NODE_ENV);
-    const nodeenvboolean = process.env.NODE_ENV === "production";
-    console.log(nodeenvboolean);
-    const nodeenvboolean2 = process.env.NODE_ENV == 'production';
-    console.log("Second " + nodeenvboolean2);
     res.cookie("currentUser", { jwt: userJwt }, {
         httpOnly: true,
         sameSite: "none",
-        secure: true,
+        secure: process.env.NODE_ENV === "production",
         maxAge: 24 * 60 * 60 * 1000,
-        domain: process.env.ORIGIN_1,
-        path: "/",
     });
     res.status(201).send(existingUser);
 }));
