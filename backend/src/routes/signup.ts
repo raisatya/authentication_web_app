@@ -63,7 +63,7 @@ router.post(
       "currentUser",
       { jwt: userJwt },
       {
-        httpOnly: true,
+        httpOnly: process.env.NODE_ENV === "production",
         secure: process.env.NODE_ENV === "production",
         maxAge: 24 * 60 * 60 * 1000,
         sameSite: "none",

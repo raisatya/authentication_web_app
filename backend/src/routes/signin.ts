@@ -47,13 +47,7 @@ router.post(
 
     res.cookie(
       "currentUser",
-      { jwt: userJwt },
-      {
-        httpOnly: true,
-        sameSite: "none",
-        secure: process.env.NODE_ENV === "production",
-        maxAge: 24 * 60 * 60 * 1000,
-      }
+      { jwt: userJwt }
     );
 
     res.status(201).send(existingUser);

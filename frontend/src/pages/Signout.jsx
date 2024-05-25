@@ -12,7 +12,7 @@ const Signout = () => {
             await axios.get(`${API_URL}/api/users/signout`, {
                 withCredentials: true
             });
-            navigate("/");
+            navigate("/", { replace: true });
         }
         verifyCurrentUser();
     }, [])

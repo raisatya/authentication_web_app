@@ -33,7 +33,7 @@ const Signin = () => {
     },
     onSuccess: () => {
       setIsLoading(false);
-      window.location.href = '/';
+      navigate('/', { replace: true });
     },
     setErrors
   });
