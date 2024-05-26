@@ -1,32 +1,12 @@
-import {memo, useState, useEffect} from 'react'
-import dayjs from 'dayjs';
+import { memo } from 'react'
 import '../App.css';
+import useLazyLoadImage from '../hooks/useLazyLoadImage';
 
 const LandingPageWrapper = ({children}) => {
-
-    const [bgClass, setBgClass] = useState('sunrisebg');
-    
-    const backgroundClassNames = [
-        'sunrisebg',
-        'noonbg',
-        'sunsetbg',
-        'nightbg',
-        'midnightbg'
-    ]
-
-    const hourValue = dayjs().hour();
-
-    useEffect(() => {
-        if (hourValue < 5) setBgClass(backgroundClassNames[4]);
-        else if (hourValue >= 5 && hourValue < 11) setBgClass(backgroundClassNames[0]);
-        else if (hourValue >= 11 && hourValue < 3) setBgClass(backgroundClassNames[1]);
-        else if (hourValue >= 3 && hourValue < 7) setBgClass(backgroundClassNames[2]);
-        else setBgClass(backgroundClassNames[3]);
-
-    }, [hourValue])
+  const [isVisible, elementRef] = useLazyLoadImage();
         
   return (
-    <div className={`${bgClass} bg-center bg-no-repeat bg-cover bg-fixed bg-gray-100 flex flex-col justify-center items-center h-screen w-full`}>
+    <div ref={elementRef} className={`${isVisible ? `sunrisebg` : `bg-gray-100`} bg-center bg-no-repeat bg-cover bg-fixed flex flex-col justify-center items-center h-screen w-full`}>
       <div className='h-screen backdrop-blur w-full mx-auto my-auto flex flex-col justify-center items-center'>
         {children}
       </div>
