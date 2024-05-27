@@ -11,16 +11,21 @@ const LandingPage = () => {
   const API_URL = import.meta.env.VITE_API_URL;
   useEffect(() => {
     const verifyCurrentUser = async () => {
+      console.log("Inside Verify Current User");
       const { data } = await axios.get(`${API_URL}/api/users/currentuser`, {
         withCredentials: true,
       });
 
       if(data)
         setCurrentUser(data.currentUser);
+      console.log("Setting current user " + currentUser);
     }
 
   verifyCurrentUser();
+  console.log("Exiting Use Effect");
   }, [])
+
+  console.log(currentUser);
   
   return (
     <LandingPageWrapper>
@@ -33,6 +38,7 @@ const LandingPage = () => {
             Authentication</h1>
           </div>
           <WeekDay />
+          <p>{currentUser.username || 'null'}</p>
           <LogoutComponent currentUser={currentUser}/>
           <p className=''>
           <a href='https://github.com/raisatya/authentication_web_app' className="">
