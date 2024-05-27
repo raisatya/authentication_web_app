@@ -38,7 +38,6 @@ const LandingPage = () => {
             Authentication</h1>
           </div>
           <WeekDay />
-          <p>{currentUser.username || 'null'}</p>
           <LogoutComponent currentUser={currentUser}/>
           <p className=''>
           <a href='https://github.com/raisatya/authentication_web_app' className="">
