@@ -19,7 +19,7 @@ const router = express_1.default.Router();
 exports.currentUserRouter = router;
 router.get('/api/users/currentuser', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const token = req.cookies.currentUser;
-    if (!token)
+    if (!token || token.jwt === null)
         return res.send({ currentUser: null });
     try {
         const payload = jsonwebtoken_1.default.verify(token.jwt, process.env.JWT_SECRET);

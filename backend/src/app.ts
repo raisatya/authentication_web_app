@@ -55,12 +55,3 @@ app.all("*", async (req: Request, res: Response) => {
 app.use(errorHandler);
 
 export { app };
-
-/*
-const CLIENT_URL = process.env.ORIGIN_1 || "http://localhost:5173";
-
-origin: CLIENT_URL,
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    optionsSuccessStatus: 200,
-    credentials: true,
-*/

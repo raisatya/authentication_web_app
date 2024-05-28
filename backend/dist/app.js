@@ -58,11 +58,3 @@ app.all("*", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     throw new not_found_error_1.NotFoundError();
 }));
 app.use(error_handler_1.errorHandler);
-/*
-const CLIENT_URL = process.env.ORIGIN_1 || "http://localhost:5173";
-
-origin: CLIENT_URL,
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    optionsSuccessStatus: 200,
-    credentials: true,
-*/ 

@@ -2,7 +2,7 @@ import { useState, useCallback, useRef } from "react";
 import { useNavigate } from 'react-router-dom';
 import useRequest from '../hooks/use-request';
 
-const SignUpComponent2 = ({ API_URL, precheckedData, setIsSuccess }) => {
+const SignInComponent = ({ setIsSuccess }) => {
 
     const navigate = useNavigate();
 
@@ -11,9 +11,11 @@ const SignUpComponent2 = ({ API_URL, precheckedData, setIsSuccess }) => {
     const [passwordInputType, setPasswordInputType] = useState("password");
     const [isLoading, setIsLoading] = useState(false);
     const [inputs, setInputs] = useState({
-        fullname: "",
+        email: "",
         password: ""
     });
+
+    const API_URL = import.meta.env.VITE_API_URL;
 
     const handleChange = useCallback((event) => {
         const name = event.target.name;
@@ -22,13 +24,11 @@ const SignUpComponent2 = ({ API_URL, precheckedData, setIsSuccess }) => {
     }, [setInputs]);
 
     const { doRequest } = useRequest({
-        url: `${API_URL}/api/users/signup`,
+        url: `${API_URL}/api/users/signin`,
         method: 'post',
         body: {
-            email: precheckedData.email,
-            username: precheckedData.username,
-            password: inputs.password,
-            fullname: inputs.fullname
+            email: inputs.email,
+            password: inputs.password
         },
         onSuccess: () => {
             setIsLoading(false);
@@ -40,7 +40,7 @@ const SignUpComponent2 = ({ API_URL, precheckedData, setIsSuccess }) => {
     const handleClear = (event) => {
         event.preventDefault();
         setInputs({
-            fullname: "",
+            email: "",
             password: ""
         });
         setErrors(null);
@@ -68,18 +68,19 @@ const SignUpComponent2 = ({ API_URL, precheckedData, setIsSuccess }) => {
             <form onSubmit={handleSubmit} className='flex flex-col justify-start w-full'>
 
                 <div className='space-y-2'>
+
                     <div className='flex flex-col space-y-1 font-medium'>
-                        <label>Full name *</label>
+                        <label>Email Id *</label>
                         <input
-                            name="fullname"
-                            id="fullname"
-                            type="text"
+                            name="email"
+                            id="email"
+                            type="email"
                             ref={inputRef}
-                            value={inputs.fullname || ""}
+                            value={inputs.email || ""}
                             onChange={handleChange}
                             required
                             autoFocus
-                            placeholder='Full name...'
+                            placeholder='Email id...'
                             className='placeholder:italic placeholder:font-normal focus:outline-none block w-full rounded-md border border-gray-200 dark:border-gray-600 bg-transparent px-4 py-3 text-gray-600 transition duration-300 invalid:ring-2 invalid:ring-red-400 focus:ring-2 focus:ring-cyan-300' />
                     </div>
                     <div className='flex flex-col space-y-1 font-medium'>
@@ -114,12 +115,12 @@ const SignUpComponent2 = ({ API_URL, precheckedData, setIsSuccess }) => {
                         {isLoading ?
                             <div className="w-6 h-6 border-2 border-dashed mr-2 rounded-full animate-spin border-white"></div> : null
                         }
-                        Sign Up</span>
+                        Sign In</span>
                 </button>
-                <p className="font-medium text-center mt-4">Already have an account?<span onClick={() => navigate('/signin')} className="text-blue-700 ml-1 cursor-pointer">Sign in instead</span></p>
+                <p className="font-medium text-center mt-4">Don't have an account?<span onClick={() => navigate('/signup')} className="text-blue-700 ml-1 cursor-pointer">Create an account</span></p>
             </form>
         </div>
     )
 }
 
-export default SignUpComponent2
+export default SignInComponent

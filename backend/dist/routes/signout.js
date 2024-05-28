@@ -17,7 +17,7 @@ const express_1 = __importDefault(require("express"));
 const router = express_1.default.Router();
 exports.signoutRouter = router;
 router.get("/api/users/signout", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    res.cookie("currentUser", null, {
+    res.cookie("currentUser", { jwt: null }, {
         httpOnly: process.env.NODE_ENV === "production",
         secure: process.env.NODE_ENV === "production",
         maxAge: 24 * 60 * 60 * 1000,

@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.get('/api/users/currentuser', async (req: Request, res: Response) => {
     const token = req.cookies.currentUser;
-    if(!token)
+    if(!token || token.jwt === null)
         return res.send({ currentUser: null });
     
     try {

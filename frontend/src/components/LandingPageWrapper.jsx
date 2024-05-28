@@ -6,7 +6,7 @@ const LandingPageWrapper = ({children}) => {
   const [isVisible, elementRef] = useLazyLoadImage();
         
   return (
-    <div ref={elementRef} className={`${isVisible ? `sunrisebg` : `bg-gray-100`} bg-center bg-no-repeat bg-cover bg-fixed flex flex-col justify-center items-center h-screen w-full`}>
+    <div ref={elementRef} className={`${isVisible ? `sunrisebg` : `radialbg`} bg-center bg-no-repeat bg-cover bg-fixed flex flex-col justify-center items-center h-screen w-full`}>
       <div className='h-screen backdrop-blur w-full mx-auto my-auto flex flex-col justify-center items-center'>
         {children}
       </div>

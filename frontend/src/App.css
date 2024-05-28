@@ -2,18 +2,7 @@
     background-image: url('/sunrise.jpg');
 }
 
-.noonbg {
-    background-image: url('/noon.jpg');
-}
-
-.sunsetbg {
-    background-image: url('/sunset.jpg');
-}
-
-.nightbg {
-    background-image: url('/night.jpg');
-}
-
-.midnightbg {
-    background-image: url('/midnight.jpg');
+.radialbg {
+    background: rgb(250, 177, 98);
+    background: radial-gradient(circle, rgba(250, 177, 98, 1) 0%, rgba(204, 91, 38, 1) 98%);
 }

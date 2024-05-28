@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
+import '../App.css'
 
 const Signout = () => {
 
@@ -18,7 +19,7 @@ const Signout = () => {
     }, [])
     
   return (
-    <div className='flex flex-col bg-gray-100 h-screen w-full justify-center items-center'>Signing out...</div>
+    <div className='radialbg flex flex-col h-screen w-full justify-center items-center'>Signing out...</div>
   )
 }
 
